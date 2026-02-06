@@ -1,0 +1,14 @@
+{
+  "name": "static-site-md-to-s3",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Simple static site generator for recipe markdown files",
+  "scripts": {
+    "build": "node src/build.js",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0"
+  }
+}
