@@ -1,17 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const matter = require('gray-matter');
-const MarkdownIt = require('markdown-it');
+const fs = require("fs");
+const path = require("path");
+const matter = require("gray-matter");
+const MarkdownIt = require("markdown-it");
 
 const md = new MarkdownIt({
   html: true,
   linkify: true,
-  typographer: true
+  typographer: true,
 });
 
-const root = path.resolve(__dirname, '..');
-const recipesDir = path.join(__dirname, 'recipes');
-const distDir = path.join(root, 'dist');
+const root = path.resolve(__dirname, "..");
+const recipesDir = path.join(__dirname, "recipes");
+const distDir = path.join(root, "dist");
 
 function ensureDir(p) {
   fs.mkdirSync(p, { recursive: true });
@@ -20,12 +20,16 @@ function ensureDir(p) {
 function slugify(input) {
   return input
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }
 
 function stripTags(html) {
-  return html.replace(/<[^>]*>/g, ' ');
+  return html.replace(/<[^>]*>/g, " ");
+}
+
+function formatMeta(category) {
+  return category ? `<div class="meta">Category: ${category}</div>` : "";
 }
 
 function renderLayout({ title, content }) {
@@ -35,13 +39,12 @@ function renderLayout({ title, content }) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${title}</title>
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="page">
     <header class="site-header">
-      <a class="logo" href="/index.html">Family Recipes</a>
-      <div class="tagline">Kitchen notes, passed down</div>
+      <a class="logo" href="index.html">Connelly Recipes</a>
     </header>
     <main class="content">
       ${content}
@@ -141,7 +144,7 @@ body {
 }
 `;
 
-  fs.writeFileSync(path.join(distDir, 'style.css'), css, 'utf8');
+  fs.writeFileSync(path.join(distDir, "style.css"), css, "utf8");
 }
 
 function build() {
@@ -149,37 +152,39 @@ function build() {
   writeStyle();
 
   const files = fs.existsSync(recipesDir)
-    ? fs.readdirSync(recipesDir).filter((f) => f.endsWith('.md'))
+    ? fs.readdirSync(recipesDir).filter((f) => f.endsWith(".md"))
     : [];
 
   const recipes = files.map((file) => {
     const fullPath = path.join(recipesDir, file);
-    const raw = fs.readFileSync(fullPath, 'utf8');
+    const raw = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(raw);
     const html = md.render(content);
-    const title = data.title || path.basename(file, '.md');
+    const title = data.title || path.basename(file, ".md");
     const slug = data.slug || slugify(title);
-    const date = data.date || null;
+    const category = data.category || null;
     const excerpt = stripTags(html).trim().slice(0, 160);
+    const recipeMeta = formatMeta(category);
 
     const page = renderLayout({
       title: `${title} | Family Recipes`,
       content: `
         <article>
           <h1 class="recipe-title">${title}</h1>
-          ${date ? `<div class="meta">${date}</div>` : ''}
+          ${recipeMeta}
           <div class="recipe-body">${html}</div>
         </article>
-      `
+      `,
     });
 
-    fs.writeFileSync(path.join(distDir, `${slug}.html`), page, 'utf8');
+    fs.writeFileSync(path.join(distDir, `${slug}.html`), page, "utf8");
 
     return {
       title,
       slug,
-      date,
-      excerpt
+      category,
+      excerpt,
+      metaHtml: recipeMeta,
     };
   });
 
@@ -189,29 +194,29 @@ function build() {
     .map(
       (r) => `
         <li class="recipe-card">
-          <a href="/${r.slug}.html">${r.title}</a>
-          ${r.date ? `<div class="meta">${r.date}</div>` : ''}
+          <a href="${r.slug}.html">${r.title}</a>
+          ${r.metaHtml}
           <p>${r.excerpt}...</p>
-        </li>`
+        </li>`,
     )
-    .join('');
+    .join("");
 
   const indexContent = `
     <section>
       <h1 class="recipe-title">All Recipes</h1>
-      <p class="meta">${recipes.length} recipe${recipes.length === 1 ? '' : 's'}</p>
+      <p class="meta">${recipes.length} recipe${recipes.length === 1 ? "" : "s"}</p>
       <ul class="recipe-list">
-        ${listItems || '<li>No recipes yet.</li>'}
+        ${listItems || "<li>No recipes yet.</li>"}
       </ul>
     </section>
   `;
 
   const indexPage = renderLayout({
-    title: 'Family Recipes',
-    content: indexContent
+    title: "Family Recipes",
+    content: indexContent,
   });
 
-  fs.writeFileSync(path.join(distDir, 'index.html'), indexPage, 'utf8');
+  fs.writeFileSync(path.join(distDir, "index.html"), indexPage, "utf8");
 
   console.log(`Built ${recipes.length} recipes.`);
 }

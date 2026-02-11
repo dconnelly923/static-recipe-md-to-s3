@@ -18,10 +18,12 @@ Add markdown files in `src/recipes`. Optional front matter:
 ```yaml
 ---
 title: My Recipe
-date: 2024-06-15
 slug: my-recipe
+category: Dinner
 ---
 ```
+
+Include `category` when you want to label the recipe (sauce, dinner, seasoning, etc.); it renders next to the title on both the recipe page and the index. Dates are not rendered anywhere.
 
 ## Deploy to S3 (GitHub Actions)
 
