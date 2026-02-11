@@ -17,6 +17,11 @@ function ensureDir(p) {
   fs.mkdirSync(p, { recursive: true });
 }
 
+function resetDir(p) {
+  fs.rmSync(p, { recursive: true, force: true });
+  ensureDir(p);
+}
+
 function slugify(input) {
   return input
     .toLowerCase()
@@ -148,7 +153,7 @@ body {
 }
 
 function build() {
-  ensureDir(distDir);
+  resetDir(distDir);
   writeStyle();
 
   const files = fs.existsSync(recipesDir)
