@@ -9,9 +9,6 @@ function renderLayout({ title, content }) {
 </head>
 <body>
   <div class="page">
-    <header class="site-header">
-      <a class="logo" href="index.html">Connelly Recipes</a>
-    </header>
     <main class="content">
       ${content}
     </main>
@@ -24,11 +21,16 @@ function renderLayout({ title, content }) {
 }
 
 function toTitleCase(str) {
-  return str.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+  return str.replace(
+    /\w\S*/g,
+    (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(),
+  );
 }
 
 function formatMeta(category) {
-  return category ? `<div class="meta">Category: ${toTitleCase(category)}</div>` : "";
+  return category
+    ? `<div class="meta">Category: ${toTitleCase(category)}</div>`
+    : "";
 }
 
 module.exports = { renderLayout, formatMeta };

@@ -16,24 +16,39 @@ function build() {
 
   const recipes = loadRecipes(recipesDir, distDir);
 
-  const listItems = recipes
-    .map(
-      (r) => `
-        <li class="recipe-card">
-          <a href="${r.slug}.html">${r.title}</a>
-          ${r.metaHtml}
-          <p>${r.excerpt}...</p>
-        </li>`,
-    )
+  const CATEGORY_ORDER = ["main", "side", "sauce", "seasoning"];
+  const CATEGORY_LABELS = { main: "Mains", side: "Sides", sauce: "Sauces", seasoning: "Seasonings" };
+
+  const byCategory = {};
+  for (const r of recipes) {
+    const cat = r.category || "";
+    if (!byCategory[cat]) byCategory[cat] = [];
+    byCategory[cat].push(r);
+  }
+
+  const sections = CATEGORY_ORDER
+    .filter((cat) => byCategory[cat])
+    .map((cat) => {
+      const items = byCategory[cat]
+        .map((r) => `
+          <li class="recipe-card">
+            <a href="${r.slug}.html">${r.title}</a>
+            <p>${r.excerpt}...</p>
+          </li>`)
+        .join("");
+      return `
+        <section class="category-section">
+          <h2 class="category-heading">${CATEGORY_LABELS[cat]}</h2>
+          <ul class="recipe-list">${items}</ul>
+        </section>`;
+    })
     .join("");
 
   const indexContent = `
     <section>
       <h1 class="recipe-title">All Recipes</h1>
       <p class="meta">${recipes.length} recipe${recipes.length === 1 ? "" : "s"}</p>
-      <ul class="recipe-list">
-        ${listItems || "<li>No recipes yet.</li>"}
-      </ul>
+      ${sections || "<p>No recipes yet.</p>"}
     </section>
   `;
 

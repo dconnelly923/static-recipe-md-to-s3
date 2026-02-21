@@ -29,7 +29,3 @@ test("renderLayout links stylesheet", () => {
   assert.ok(html.includes('href="style.css"'));
 });
 
-test("renderLayout links back to index", () => {
-  const html = renderLayout({ title: "T", content: "" });
-  assert.ok(html.includes('href="index.html"'));
-});
