@@ -1,6 +1,8 @@
 ---
 title: Instant Pot Spaghetti and Meat Sauce
+category: main
 date: 2026-02-10
+display: true
 ---
 
 ## Equipment
