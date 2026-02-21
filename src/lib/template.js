@@ -23,8 +23,12 @@ function renderLayout({ title, content }) {
 </html>`;
 }
 
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+}
+
 function formatMeta(category) {
-  return category ? `<div class="meta">Category: ${category}</div>` : "";
+  return category ? `<div class="meta">Category: ${toTitleCase(category)}</div>` : "";
 }
 
 module.exports = { renderLayout, formatMeta };

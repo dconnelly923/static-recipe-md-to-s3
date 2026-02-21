@@ -8,8 +8,10 @@ test("formatMeta returns empty string when no category", () => {
   assert.equal(formatMeta(""), "");
 });
 
-test("formatMeta returns category div when category provided", () => {
-  assert.equal(formatMeta("main"), '<div class="meta">Category: main</div>');
+test("formatMeta renders category in title case", () => {
+  assert.equal(formatMeta("main"), '<div class="meta">Category: Main</div>');
+  assert.equal(formatMeta("MAIN"), '<div class="meta">Category: Main</div>');
+  assert.equal(formatMeta("mAiN"), '<div class="meta">Category: Main</div>');
 });
 
 test("renderLayout includes the title in <title>", () => {
