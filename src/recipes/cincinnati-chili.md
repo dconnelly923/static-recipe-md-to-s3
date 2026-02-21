@@ -2,7 +2,6 @@
 title: Cincinnati Chili
 category: main
 date: 2026-02-11
-display: true
 ---
 
 ## Equipment

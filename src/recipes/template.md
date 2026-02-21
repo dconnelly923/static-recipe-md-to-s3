@@ -1,8 +1,7 @@
 ---
 title: Template
-category: main | side | misc
+category: template
 date: 1999-12-31
-display: true | false
 ---
 
 ## Equipment

@@ -2,7 +2,6 @@
 title: Cornbread
 category: side
 date: 2026-02-11
-display: true
 ---
 
 ## Ingredients

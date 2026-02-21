@@ -14,11 +14,11 @@ function loadRecipes(recipesDir, distDir) {
     const fullPath = path.join(recipesDir, file);
     const raw = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(raw);
-    if (data.display === false) return null;
+    const category = data.category || null;
+    if (category === "template") return null;
 
     const title = data.title || path.basename(file, ".md");
     const slug = data.slug || slugify(title);
-    const category = data.category || null;
     const html = md.render(content);
     const excerpt = stripTags(html).trim().slice(0, 160);
     const recipeMeta = formatMeta(category);
