@@ -5,7 +5,8 @@
   "description": "Simple static site generator for recipe markdown files",
   "scripts": {
     "build": "node src/build.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "test": "node --test test/*.test.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
