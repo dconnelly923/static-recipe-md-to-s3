@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=Roboto+Slab:wght@900&display=swap');
 
 :root {
-  --bg: #f2faf7;
-  --text: #1a2e28;
-  --muted: #6b8c81;
-  --accent: #28a880;
-  --accent-light: #e0f5ee;
-  --card: #ffffff;
-  --border: #c6e8dc;
-  --shadow: rgba(40, 168, 128, 0.08);
+  --bg: #0e1c18;
+  --text: #dff2ec;
+  --muted: #6b9e8f;
+  --accent: #2de8a8;
+  --accent-light: #162e26;
+  --card: #172822;
+  --border: #1e3d30;
+  --shadow: rgba(0, 0, 0, 0.35);
   --radius: 16px;
 }
 
@@ -17,8 +17,8 @@
 body {
   background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse at 10% 0%, rgba(40, 168, 128, 0.12) 0%, transparent 50%),
-    radial-gradient(ellipse at 90% 100%, rgba(40, 168, 128, 0.08) 0%, transparent 50%);
+    radial-gradient(ellipse at 10% 0%, rgba(45, 232, 168, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(45, 232, 168, 0.05) 0%, transparent 50%);
   color: var(--text);
   font-family: 'IBM Plex Sans', system-ui, sans-serif;
   font-weight: 300;
