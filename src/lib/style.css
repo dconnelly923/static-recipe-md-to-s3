@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=Rubik:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=Roboto+Slab:wght@900&display=swap');
 
 :root {
   --bg: #f2faf7;
@@ -42,8 +42,8 @@ body {
 .recipe-title {
   margin-top: 0;
   font-size: 34px;
-  font-weight: 700;
-  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-family: 'Roboto Slab', serif;
   color: var(--accent);
   text-align: center;
   text-transform: uppercase;
@@ -67,8 +67,8 @@ body {
 
 .category-heading {
   font-size: 13px;
-  font-weight: 600;
-  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-family: 'Roboto Slab', serif;
   color: var(--muted);
   border-bottom: 1px solid var(--border);
   padding-bottom: 8px;
@@ -104,8 +104,8 @@ body {
   color: var(--text);
   text-decoration: none;
   font-size: 17px;
-  font-weight: 400;
-  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-family: 'Roboto Slab', serif;
   text-transform: uppercase;
 }
 
@@ -123,8 +123,8 @@ body {
 /* Recipe page body content */
 .content h2 {
   font-size: 13px;
-  font-weight: 700;
-  font-family: 'Rubik', sans-serif;
+  font-weight: 900;
+  font-family: 'Roboto Slab', serif;
   color: var(--accent);
   margin: 32px 0 10px;
   letter-spacing: 0.12em;
