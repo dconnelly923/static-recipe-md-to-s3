@@ -47,7 +47,7 @@ function build() {
 
   const indexContent = `
     <section>
-      <h1 class="recipe-title">All Recipes</h1>
+      <h1 class="recipe-title">Recipes</h1>
       ${sections || "<p>No recipes yet.</p>"}
     </section>
   `;
