@@ -7,6 +7,7 @@ const { renderLayout } = require("./lib/template");
 const root = path.resolve(__dirname, "..");
 const recipesDir = path.join(__dirname, "recipes");
 const distDir = path.join(root, "dist");
+const BASE_PATH = process.env.BASE_PATH || "";
 
 function build() {
   resetDir(distDir);
@@ -32,7 +33,7 @@ function build() {
       const items = byCategory[cat]
         .map((r) => `
           <li class="recipe-card">
-            <a href="${r.slug}.html">${r.title}</a>
+            <a href="${BASE_PATH}${r.slug}.html">${r.title}</a>
             ${r.description ? `<p>${r.description}</p>` : ""}
           </li>`)
         .join("");
@@ -54,6 +55,7 @@ function build() {
   const indexPage = renderLayout({
     title: "Family Recipes",
     content: indexContent,
+    basePath: BASE_PATH,
   });
 
   fs.writeFileSync(path.join(distDir, "index.html"), indexPage, "utf8");
