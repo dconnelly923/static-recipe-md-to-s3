@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          BASE_PATH: /recipes/
+          BASE_PATH: /recipes/recipes/
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -38,4 +38,4 @@ jobs:
       - name: Deploy to S3
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
-        run: aws s3 sync dist s3://$S3_BUCKET/recipes --delete
+        run: aws s3 sync dist s3://$S3_BUCKET/recipes/recipes --delete
