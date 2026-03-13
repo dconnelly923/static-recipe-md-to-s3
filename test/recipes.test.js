@@ -109,12 +109,20 @@ test("recipe HTML includes rendered markdown body", () => {
   assert.ok(html.includes("Cook it"));
 });
 
-test("excerpt is truncated to 160 characters", () => {
+test("returns description from frontmatter when present", () => {
   const { recipesDir, distDir } = makeTmpDirs();
-  const longBody = "word ".repeat(100);
-  writeRecipe(recipesDir, "r.md", "title: Long Recipe\ncategory: main", longBody);
+  writeRecipe(recipesDir, "r.md", "title: Chili\ncategory: main\ndescription: A hearty chili.");
 
   const recipes = loadRecipes(recipesDir, distDir);
 
-  assert.ok(recipes[0].excerpt.length <= 160);
+  assert.equal(recipes[0].description, "A hearty chili.");
+});
+
+test("returns null description when not in frontmatter", () => {
+  const { recipesDir, distDir } = makeTmpDirs();
+  writeRecipe(recipesDir, "r.md", "title: Chili\ncategory: main");
+
+  const recipes = loadRecipes(recipesDir, distDir);
+
+  assert.equal(recipes[0].description, null);
 });

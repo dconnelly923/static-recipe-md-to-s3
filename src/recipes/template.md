@@ -2,6 +2,7 @@
 title: Template
 category: template
 date: 1999-12-31
+description: Optional short description shown on the index page.
 ---
 
 ## Equipment

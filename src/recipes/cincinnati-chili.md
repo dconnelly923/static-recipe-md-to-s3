@@ -2,6 +2,7 @@
 title: Cincinnati Chili
 category: main
 date: 2026-02-11
+description: A Cincinnati classic. Spiced ground beef with cinnamon, allspice, and chocolate served over spaghetti.
 ---
 
 ## Equipment

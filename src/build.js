@@ -33,7 +33,7 @@ function build() {
         .map((r) => `
           <li class="recipe-card">
             <a href="${r.slug}.html">${r.title}</a>
-            <p>${r.excerpt}...</p>
+            ${r.description ? `<p>${r.description}</p>` : ""}
           </li>`)
         .join("");
       return `
@@ -47,7 +47,6 @@ function build() {
   const indexContent = `
     <section>
       <h1 class="recipe-title">All Recipes</h1>
-      <p class="meta">${recipes.length} recipe${recipes.length === 1 ? "" : "s"}</p>
       ${sections || "<p>No recipes yet.</p>"}
     </section>
   `;

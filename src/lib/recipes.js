@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
 const md = require("./markdown");
-const { slugify, stripTags } = require("./slugify");
+const { slugify } = require("./slugify");
 const { renderLayout, formatMeta } = require("./template");
 
 function loadRecipes(recipesDir, distDir) {
@@ -19,8 +19,8 @@ function loadRecipes(recipesDir, distDir) {
 
     const title = data.title || path.basename(file, ".md");
     const slug = data.slug || slugify(title);
+    const description = data.description || null;
     const html = md.render(content);
-    const excerpt = stripTags(html).trim().slice(0, 160);
     const recipeMeta = formatMeta(category);
 
     const page = renderLayout({
@@ -36,7 +36,7 @@ function loadRecipes(recipesDir, distDir) {
 
     fs.writeFileSync(path.join(distDir, `${slug}.html`), page, "utf8");
 
-    return { title, slug, category, excerpt, metaHtml: recipeMeta };
+    return { title, slug, category, description, metaHtml: recipeMeta };
   }).filter(Boolean);
 
   recipes.sort((a, b) => (a.title > b.title ? 1 : -1));

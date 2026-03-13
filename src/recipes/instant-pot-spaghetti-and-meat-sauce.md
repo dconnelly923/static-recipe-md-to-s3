@@ -2,6 +2,7 @@
 title: Instant Pot Spaghetti and Meat Sauce
 category: main
 date: 2026-02-10
+description: Spaghetti and meat sauce cooked together in a pressure cooker in under 30 minutes.
 ---
 
 ## Equipment

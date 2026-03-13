@@ -2,6 +2,7 @@
 title: Cornbread
 category: side
 date: 2026-02-11
+description: A simple, slightly sweet cornbread baked in a cast iron skillet until golden.
 ---
 
 ## Ingredients
