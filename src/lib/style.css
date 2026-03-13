@@ -1,175 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;700&family=Noto+Serif:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=Rubik:wght@400;700&display=swap');
 
 :root {
-  --bg: #06060f;
-  --text: #f0f0f0;
-  --muted: #888888;
-  --accent: #6c63ff;
-  --card: rgba(255, 255, 255, 0.04);
-  --border: rgba(255, 255, 255, 0.08);
-  --shadow: rgba(0, 0, 0, 0.4);
+  --bg: #f2faf7;
+  --text: #1a2e28;
+  --muted: #6b8c81;
+  --accent: #28a880;
+  --accent-light: #e0f5ee;
+  --card: #ffffff;
+  --border: #c6e8dc;
+  --shadow: rgba(40, 168, 128, 0.08);
   --radius: 16px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body { height: 100%; }
-
 body {
   background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 10% 0%, rgba(40, 168, 128, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(40, 168, 128, 0.08) 0%, transparent 50%);
   color: var(--text);
   font-family: 'IBM Plex Sans', system-ui, sans-serif;
   font-weight: 300;
   min-height: 100vh;
 }
 
-/* Nebula glows */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 18% 42%, rgba(108, 99, 255, 0.2) 0%, transparent 55%),
-    radial-gradient(ellipse at 78% 20%, rgba(40, 110, 220, 0.14) 0%, transparent 45%),
-    radial-gradient(ellipse at 55% 88%, rgba(180, 60, 130, 0.12) 0%, transparent 40%);
-  pointer-events: none;
-  animation: nebula-pulse 10s ease-in-out infinite;
-  z-index: 0;
-}
-
-@keyframes nebula-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-/* Star field */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  background: transparent;
-  pointer-events: none;
-  z-index: 0;
-  box-shadow:
-    50px 50px 0 0 rgba(255,255,255,0.85),
-    200px 120px 0 0 rgba(255,255,255,0.7),
-    350px 30px 0 0 #fff,
-    500px 180px 0 0 rgba(200,210,255,0.9),
-    680px 70px 0 0 rgba(255,255,255,0.8),
-    820px 200px 0 0 rgba(255,255,255,0.6),
-    1000px 40px 0 0 #fff,
-    1150px 130px 0 0 rgba(255,255,255,0.85),
-    1320px 90px 0 0 rgba(220,230,255,0.8),
-    1480px 20px 0 0 rgba(200,220,255,0.9),
-    1650px 160px 0 0 #fff,
-    1800px 80px 0 0 rgba(255,255,255,0.7),
-    1920px 140px 0 0 rgba(255,255,255,0.75),
-    30px 280px 0 0 rgba(255,255,255,0.6),
-    160px 340px 0 0 #fff,
-    290px 260px 0 0 rgba(255,255,255,0.75),
-    440px 380px 0 0 rgba(220,230,255,0.8),
-    600px 300px 0 0 rgba(200,210,255,0.7),
-    750px 420px 0 0 #fff,
-    900px 290px 0 0 rgba(255,255,255,0.85),
-    1080px 360px 0 0 rgba(255,255,255,0.65),
-    1230px 280px 0 0 rgba(255,255,255,0.6),
-    1400px 400px 0 0 #fff,
-    1550px 320px 0 0 rgba(220,230,255,0.8),
-    1720px 370px 0 0 rgba(255,255,255,0.75),
-    1880px 310px 0 0 rgba(255,255,255,0.7),
-    70px 560px 0 0 #fff,
-    220px 480px 0 0 rgba(255,255,255,0.8),
-    380px 620px 0 0 rgba(220,230,255,0.75),
-    520px 540px 0 0 rgba(200,210,255,0.9),
-    670px 590px 0 0 rgba(255,255,255,0.65),
-    830px 510px 0 0 rgba(255,255,255,0.6),
-    980px 660px 0 0 #fff,
-    1140px 580px 0 0 rgba(255,255,255,0.85),
-    1310px 540px 0 0 rgba(220,230,255,0.7),
-    1460px 610px 0 0 rgba(255,255,255,0.75),
-    1630px 570px 0 0 #fff,
-    1790px 630px 0 0 rgba(255,255,255,0.7),
-    40px 780px 0 0 rgba(255,255,255,0.65),
-    190px 840px 0 0 #fff,
-    330px 760px 0 0 rgba(200,215,255,0.8),
-    480px 900px 0 0 rgba(255,255,255,0.75),
-    640px 820px 0 0 rgba(255,255,255,0.7),
-    790px 870px 0 0 #fff,
-    950px 790px 0 0 rgba(255,255,255,0.85),
-    1100px 860px 0 0 rgba(220,230,255,0.7),
-    1270px 810px 0 0 rgba(255,255,255,0.6),
-    1430px 920px 0 0 #fff,
-    1590px 830px 0 0 rgba(255,255,255,0.8),
-    1760px 890px 0 0 rgba(200,215,255,0.75),
-    130px 150px 0 1px rgba(255,255,255,0.9),
-    460px 450px 0 1px #fff,
-    750px 250px 0 1px rgba(220,235,255,0.9),
-    1100px 550px 0 1px #fff,
-    1400px 200px 0 1px rgba(255,255,255,0.85),
-    1700px 480px 0 1px rgba(220,230,255,0.9),
-    300px 750px 0 1px rgba(200,215,255,0.9),
-    850px 900px 0 1px #fff,
-    1250px 700px 0 1px rgba(255,255,255,0.85),
-    1600px 850px 0 1px rgba(220,235,255,0.9),
-    100px 950px 0 1px #fff,
-    1900px 600px 0 1px rgba(255,255,255,0.85),
-    570px 350px 0 2px rgba(255,255,255,0.95),
-    1350px 650px 0 2px rgba(220,235,255,0.95),
-    950px 150px 0 2px rgba(255,255,255,0.9);
-}
-
 .page {
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
   max-width: 860px;
   margin: 0 auto;
-  padding: 32px 20px 60px;
+  padding: 40px 20px 60px;
 }
 
 .content {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px;
-  box-shadow: 0 18px 40px var(--shadow);
-  backdrop-filter: blur(4px);
+  padding: 32px;
+  box-shadow: 0 4px 24px var(--shadow);
 }
 
 .recipe-title {
   margin-top: 0;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
-  font-family: 'Noto Serif', serif;
-  letter-spacing: -0.02em;
+  font-family: 'Rubik', sans-serif;
   color: var(--accent);
   text-align: center;
-  margin-bottom: 24px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
 }
 
 .meta {
   color: var(--muted);
   margin-bottom: 20px;
   text-align: center;
+  font-size: 14px;
 }
 
 .category-section {
-  margin-top: 32px;
+  margin-top: 36px;
+}
+
+.category-section:first-child {
+  margin-top: 0;
 }
 
 .category-heading {
-  font-size: 18px;
-  font-weight: 400;
-  font-family: 'Noto Serif', serif;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Rubik', sans-serif;
   color: var(--muted);
   border-bottom: 1px solid var(--border);
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   margin: 0 0 16px;
   text-align: center;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -178,56 +83,62 @@ body::after {
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 12px;
+  gap: 10px;
 }
 
 .recipe-card {
-  padding: 16px;
+  padding: 16px 20px;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  transition: border-color 0.2s, background 0.2s;
+  background: var(--card);
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
 }
 
 .recipe-card:hover {
-  border-color: rgba(108, 99, 255, 0.4);
-  background: rgba(108, 99, 255, 0.06);
+  border-color: var(--accent);
+  background: var(--accent-light);
+  box-shadow: 0 2px 12px var(--shadow);
 }
 
 .recipe-card a {
   color: var(--text);
   text-decoration: none;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
-  font-family: 'Noto Serif', serif;
+  font-family: 'Rubik', sans-serif;
+  text-transform: uppercase;
 }
 
-.recipe-card a:hover {
+.recipe-card:hover a {
   color: var(--accent);
 }
 
 .recipe-card p {
-  margin: 6px 0 0;
+  margin: 5px 0 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
 /* Recipe page body content */
 .content h2 {
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 700;
-  font-family: 'Noto Serif', serif;
+  font-family: 'Rubik', sans-serif;
   color: var(--accent);
-  margin: 28px 0 10px;
-  letter-spacing: 0.04em;
+  margin: 32px 0 10px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .content ul, .content ol {
   padding-left: 20px;
-  line-height: 1.9;
+  line-height: 2;
   color: var(--text);
+}
+
+.content li {
+  font-weight: 300;
 }
 
 .content p {
@@ -237,13 +148,13 @@ body::after {
 }
 
 .site-footer {
-  margin-top: 24px;
+  margin-top: 28px;
   color: var(--muted);
   font-size: 13px;
   text-align: center;
 }
 
 @media (max-width: 640px) {
-  .content { padding: 18px; }
-  .recipe-title { font-size: 26px; }
+  .content { padding: 20px; }
+  .recipe-title { font-size: 28px; }
 }
